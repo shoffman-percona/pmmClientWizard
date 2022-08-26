@@ -116,7 +116,7 @@ if ! check_command pmm-admin; then
 		wget https://repo.percona.com/apt/percona-release_latest.generic_all.deb
 		run_root 'dpkg -i percona-release_latest.generic_all.deb'
 		run_root 'apt update'
-		run_root 'apt install pmm2-client'
+		run_root 'apt install -y pmm2-client'
 		rm -f percona-release_latest.generic_all.deb
 	elif [ $OS == "redhat" ]; then 
 		echo "installing for redhat"
