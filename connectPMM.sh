@@ -111,6 +111,7 @@ if ! check_command pmm-admin; then
 		echo "Mac is not supported for this installer yet"
 		exit
 	elif [ $OS == "debian" ]; then
+		run_root 'apt update'
 		run_root 'apt install -y wget gnupg2 lsb-release'
 		wget https://repo.percona.com/apt/percona-release_latest.generic_all.deb
 		run_root 'dpkg -i percona-release_latest.generic_all.deb'
