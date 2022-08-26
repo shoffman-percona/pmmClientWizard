@@ -111,14 +111,19 @@ if ! check_command pmm-admin; then
 		echo "Mac is not supported for this installer yet"
 		exit
 	elif [ $OS == "debian" ]; then
+		run_root 'apt update'
 		run_root 'apt install -y wget gnupg2 lsb-release'
 		wget https://repo.percona.com/apt/percona-release_latest.generic_all.deb
 		run_root 'dpkg -i percona-release_latest.generic_all.deb'
+		run_root 'percona-release enable-only pmm2-client'
 		run_root 'apt update'
-		run_root 'apt install pmm2-client'
+		run_root 'apt install -y pmm2-client'
 		rm -f percona-release_latest.generic_all.deb
 	elif [ $OS == "redhat" ]; then 
 		echo "installing for redhat"
+		run_root 'yum -y install https://repo.percona.com/yum/percona-release-1.0-27.noarch.rpm'
+		run_root 'percona-release enable-only pmm2-client'
+		run_root 'yum -y install pmm2-client'
 	else
 		echo "could not detect os properly"
 	fi
