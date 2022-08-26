@@ -115,6 +115,7 @@ if ! check_command pmm-admin; then
 		run_root 'apt install -y wget gnupg2 lsb-release'
 		wget https://repo.percona.com/apt/percona-release_latest.generic_all.deb
 		run_root 'dpkg -i percona-release_latest.generic_all.deb'
+		run_root 'percona-release enable-only pmm2-client'
 		run_root 'apt update'
 		run_root 'apt install -y pmm2-client'
 		rm -f percona-release_latest.generic_all.deb
