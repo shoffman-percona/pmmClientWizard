@@ -121,6 +121,9 @@ if ! check_command pmm-admin; then
 		rm -f percona-release_latest.generic_all.deb
 	elif [ $OS == "redhat" ]; then 
 		echo "installing for redhat"
+		run_root 'yum -y install https://repo.percona.com/yum/percona-release-1.0-27.noarch.rpm'
+		run_root 'percona-release enable-only pmm2-client'
+		run_root 'yum -y install pmm2-client'
 	else
 		echo "could not detect os properly"
 	fi
